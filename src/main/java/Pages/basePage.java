@@ -34,7 +34,7 @@ public class basePage {
         select.selectByIndex(index);
     }
     public void waitElement(By locator){
-        WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(60));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
@@ -45,6 +45,7 @@ public class basePage {
         waitElement(locator);
         Robot robot = new Robot();
 
+        robot.delay(2000);
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
 
@@ -58,6 +59,7 @@ public class basePage {
 
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
+        robot.delay(3000);
     }
 
     public void scrollDown()
