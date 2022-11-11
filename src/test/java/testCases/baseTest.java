@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class baseTest {
@@ -17,7 +18,6 @@ public class baseTest {
     String baseURL ="https://twitter.com/";
     loginPage loginObject;
     homePage homeObject;
-    String title;
 
     @BeforeSuite
     public void setup() throws InterruptedException
@@ -28,12 +28,12 @@ public class baseTest {
         loginObject=new loginPage(driver);
         homeObject=new homePage(driver);
         driver.get(baseURL);
-        driver.manage().timeouts().implicitlyWait(300, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3000));
     }
-//    @AfterSuite
-//    public void exit()
-//    {
-//        driver.quit();
-//    }
+    @AfterSuite
+    public void exit()
+    {
+        driver.quit();
+    }
 }
 

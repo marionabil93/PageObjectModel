@@ -44,11 +44,18 @@ public class basePage {
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelection, null);
         waitElement(locator);
         Robot robot = new Robot();
+
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
+
         robot.keyPress(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_V);
+
         robot.keyRelease(KeyEvent.VK_V);
         robot.keyRelease(KeyEvent.VK_CONTROL);
-     //To Click on the "Open" button to upload files
+
+        robot.delay(3000);
+
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
     }

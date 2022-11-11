@@ -14,14 +14,15 @@ public class homePage extends basePage{
     private By tweetBox=By.xpath("//div[@role='textbox']");
     private By tweetButton=By.xpath("//div[@data-testid='tweetButtonInline']");
     private By addPic=By.xpath("//div[@aria-label='Add photos or video']");
-    String imgName="img.jpg";
-    String imgPath=System.getProperty("user.dir")+"/Uploads/"+imgName;
     private By addGIF=By.xpath("//div[@data-testid='gifSearchButton']");
     private By searchGIF=By.xpath("//input[@data-testid='gifSearchSearchInput']");
     private By selectedGIF=By.xpath("//div[@aria-label='Happy Cheering GIF by bluesbear']");
     private By addPOLL=By.xpath("//div[@data-testid='createPollButton']");
     private By addChoice1=By.name("Choice1");
     private By addChoice2=By.name("Choice2");
+
+    private By successfulMessage=By.xpath("//div[@role='alert'] //div[@dir='auto']");
+
 
 
     public void TweetSendText(String data)
@@ -30,18 +31,17 @@ public class homePage extends basePage{
     }
     public void ClickPostTweet()
     {
+        waitElement(tweetButton);
         click(tweetButton);
     }
 
 
     public void ClickAddPic()
     {
+        waitElement(addPic);
         click(addPic);
     }
-//    public void uploadPhoto(String photo)
-//    {
-//        UploadPic(addPic, photo);
-//    }
+
     public void ClickAddGIF()
     {
         waitElement(addGIF);
@@ -96,14 +96,16 @@ public class homePage extends basePage{
     }
 
     public void tweetPhotoFunction() throws AWTException {
-        String imgName="img.jpg";
+        String imgName="bayern.jpg";
         String imgPath=System.getProperty("user.dir")+"\\Uploads\\"+imgName;
-        scrollUp();
-        waitElement(tweetButton);
         ClickAddPic();
         uploadImage(imgPath,addPic);
         scrollDown();
-        waitElement(tweetButton);
         ClickPostTweet();
+    }
+
+    public String AssertTweetText(){
+        waitElement(successfulMessage);
+        return    driver.findElement(successfulMessage).getText();
     }
 }

@@ -14,6 +14,9 @@ public class loginPage extends basePage{
     private By next=By.xpath("(//div[@role='button']//div[@dir='auto'])[3]");
     private By password=By.name("password");
     private By loginButton=By.xpath("(//div[@role='button']//div[@dir='auto'])[3]");
+
+    private By profileNameAccount= By.xpath("//div[@aria-label='Account menu'] //div[@dir='ltr']");
+
     public void navigateToSignInPage()
     {
         click(signInButton);
@@ -43,5 +46,10 @@ public class loginPage extends basePage{
        clickNext();
        enterPassword("P@ssw0rd");
        clickLogin();
+    }
+
+    public String getHomePageDashboardUserName(){
+        waitElement(profileNameAccount);
+        return    driver.findElement(profileNameAccount).getText();
     }
 }
